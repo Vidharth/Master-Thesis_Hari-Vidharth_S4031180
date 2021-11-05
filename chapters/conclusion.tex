@@ -1,10 +1,50 @@
 \section{Conclusion}
 
-\subsection{Discussion}
+\subsection{Summary of Results}
+\begin{table}[h!]
+\begin{tabular}{|c|cc|cc|c|}
+\hline
+Fetch Environment & Baseline I               &      & Current Implementation    &      & Speedup   \\ \hline
+ & \multicolumn{1}{c|}{Timesteps} & Success Rate & \multicolumn{1}{c|}{Timesteps} & Success Rate &  \\ \hline
+Reach             & \multicolumn{1}{c|}{32K} & 1.0  & \multicolumn{1}{c|}{16K}  & 1.0  & $\sim$2x  \\ \hline
+Pick and Place    & \multicolumn{1}{c|}{10M} & 0.0  & \multicolumn{1}{c|}{310K} & 1.0  & -         \\ \hline
+Push              & \multicolumn{1}{c|}{10M} & 0.85 & \multicolumn{1}{c|}{1.1M} & 0.95 & $\sim$10x \\ \hline
+Slide             & \multicolumn{1}{c|}{10M} & 0.4  & \multicolumn{1}{c|}{2M}   & 0.6  & $\sim$5x  \\ \hline
+\end{tabular}
+\caption{Comparison of Current Implementation with Baseline 1}
+\label{tab:my-table1}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{|c|cc|cc|c|}
+\hline
+Fetch Environment & Baseline II             &     & Current Implementation    &      & Speedup  \\ \hline
+               & \multicolumn{1}{c|}{Timesteps} & Success Rate & \multicolumn{1}{c|}{Timesteps} & Success Rate &          \\ \hline
+Reach             & \multicolumn{1}{c|}{-}  & -   & \multicolumn{1}{c|}{16K}  & 1.0  & -        \\ \hline
+Pick and Place & \multicolumn{1}{c|}{1M}        & 0.9          & \multicolumn{1}{c|}{310K}      & 1.0          & $\sim$3x \\ \hline
+Push              & \multicolumn{1}{c|}{3M} & 0.9 & \multicolumn{1}{c|}{1.1M} & 0.95 & $\sim$3x \\ \hline
+Slide             & \multicolumn{1}{c|}{8M} & 0.6 & \multicolumn{1}{c|}{2M}   & 0.6  & $\sim$4x \\ \hline
+\end{tabular}
+\caption{Comparison of Current Implementation with Baseline 2}
+\label{tab:my-table2}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|}
+\hline
+Fetch Environment & Baseline III   & Current Implementation \\ \hline
+                  & Success Rate & Success Rate           \\ \hline
+Reach             & -            & 1.0                    \\ \hline
+Pick and Place    & 0.8          & 1.0                    \\ \hline
+Push              & 0.2          & 0.95                   \\ \hline
+Slide             & 0.2          & 0.6                    \\ \hline
+\end{tabular}
+\caption{Comparison of Current Implementation with Baseline 3}
+\label{tab:my-table}
+\end{table}
 
 \subsection{Answering Research Questions}
 
-\subsection{Summary of Main Contributions $\&$ Conclusion}
+\subsection{Summary of Main Contributions}
 
 \subsection{Future Work}
-
