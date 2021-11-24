@@ -23,6 +23,9 @@
 \usepackage{fancyhdr} % Use headers
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 % Here I keep the left and right margins equal. You can choose to have unequal margins if you want a two-sided book effect.
 \usepackage[
 	top    = 1.5cm,
@@ -124,9 +127,9 @@
     Master of Science in Artificial Intelligence \\
     at University of Groningen under the supervision of \\
 
-    \bf{Prof. Dr. Hamidreza Kasaei (Faculty of Science and Engineering, Artificial Intelligence)} \\
+    \bf{Prof. Dr Lambert Schomaker (Department of Artificial Intelligence)} \\
     and \\
-    \bf{Prof. Dr. Lambert Schomaker (Faculty of Science and Engineering, Artificial Intelligence)} \\
+    \bf{Dr Hamidreza Kasaei (Department of Artificial Intelligence)} \\
 
     \vspace{1cm}{\bf{Hari Vidharth \\
     \vspace{1mm}s4031180 \\
@@ -159,7 +162,7 @@
 \include{chapters/conclusion}
 \pagestyle{contents}
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{unsrt}
 \bibliography{biblio}
 
 \include{chapters/appendix}

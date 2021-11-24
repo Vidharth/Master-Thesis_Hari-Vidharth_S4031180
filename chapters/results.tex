@@ -4,9 +4,9 @@
 
 The first baseline is the combination of reinforcement learning and hindsight experience replay. The combination of DDPG+HER when proposed was able to achieve much success in solving complex multi-goal robotics tasks and has set a benchmark for future research to come. This is an environmental baseline and was the first to solve sparse reward environments used in this research and will be used to compare the current implementation's capability to solve the environment successfully. \\
 
-The second baseline is much closer to this research in terms of algorithm and implementation also combining behavior cloning with reinforcement learning. DDPG+BC along with expert demonstrations was able to successfully accelerate complex robotics tasks in the mentioned environments. This is an algorithmic baseline that was first provided accelerated learning for the environments used in this research and will be used to compare the current implementation's capability to further provide accelerated learning. \\
+The second baseline is much closer to this research in terms of algorithm and implementation also combining behaviour cloning with reinforcement learning. DDPG+BC along with expert demonstrations was able to successfully accelerate complex robotics tasks in the mentioned environments. This is an algorithmic baseline that was first provided accelerated learning for the environments used in this research and will be used to compare the current implementation's capability to further provide accelerated learning. \\
 
-The third baseline implements pure behavior cloning using demonstrations and will serve as a comparison for why this method has either great or really poor performance. \\
+The third baseline implements pure behaviour cloning using demonstrations and will serve as a comparison for why this method has either great or really poor performance. \\
 
 The fourth baseline implements plain reinforcement learning without demonstrations or hindsight experience replay but with dense rewards and was able to achieve good performance in accelerating complex multi-goal robotics tasks. This is a reward baseline that first proposed a new reward function for the multi-goal robotic sparse reward environments used in this research and will be used to compare the current implementation's capability to provide accelerated learning. \\
 
@@ -16,9 +16,11 @@ The comparison between the current implementation and the baselines will take pl
 
 For task 1 the current implementation will be compared to only baseline 1, baselines 2 and 3 are not available for comparison due to the comparatively simple nature of the environment it was not implemented as a part of this baseline research, but in this paper results for the current implementation is presented for this environment to stay consistent across all the environments in the fetch robotics environment suite. For tasks 2 and 3 the current implementation will be compared with baselines 1, 2 and 3. Baseline 4 will be used only for task 4 as that research only focuses on this particular environment. The comparison between different sources of demonstrations will also be done only for task 4 due to the use of a handcrafted script as a different source of demonstration. This script was not developed as a part of this research and was provided by the baselines team \cite{stable-baselines} as an example for this particular environment. \\
 
-Some abbreviations used in the results to denote the number of time steps are, K and M which corresponds to 1 Thousand and 1 Million respectively. All the graphs and visualizations seen in this research was captured using the Weights and Biases toolbox \cite{wandb}. \\
+Some abbreviations used in the results to denote the number of time steps are, K and M which correspond to 1 Thousand and 1 Million respectively. All the graphs and visualizations seen in this research were captured using the Weights and Biases toolbox \cite{wandb}. The video demos of all the environments can be found in the Project Page  on GitHub \cite{CurrentImplementation}. \\
 
 \subsection{Fetch Reach Environment}
+
+TODO: CHANGE REACH RESULTS FROM GUTHUB TO PAPER !! \\
 
 \begin{figure}[h!]
      \centering
@@ -56,7 +58,7 @@ In the fetch reach environment, compared to baseline 1, the current implementati
         \label{fig:FPR}
 \end{figure}
 
-In the fetch push environment, baseline 3 performs the worst by achieving a success rate of only 0.2, performing similar or worse than a random agent. Baseline 1 can successfully solve the environment and reaches a success rate of 0.8 in 10M time steps and baseline 2 can beat it by reaching a success rate of 0.9 in 3M time steps and a success rate of 0.95 in 6M time steps. Figure \ref{fig:FPR} shows that the current implementation can beat all the previous baselines by reaching a success rate of 0.95 in approximately 1.1M time steps, solving the environment successfully and also providing accelerated learning. An interesting observation here is that the demonstrations used had a clear pushing motion where the end effector of the robot arm is used to push the block towards the goal. However, the final agent learned behavior is slightly different from what is expected. The agent can use the end effector of the robot arm to successfully move the object to the goal, but instead of a pushing motion, it uses a poking motion. The main reason could be the dynamics of the environment, MuJoCo uses a soft body collision system for its interactions. This might have influenced the agent to interact differently with the objects in the environment. Even though the goal might be successful, this particular motion might not be a desirable behavior for real-world applications. This can easily be fixed by changing the constraints to rigid body collisions, but this was not done for this research as this process increases the simulation time of the environment significantly. But one positive outcome is that the agent in the current implementation is not bound or constrained to the actions of the demonstrations, it can modify its actions as per the environment and develop new behaviors. As an extension to this research, it would be interesting to try out two things, in the same environment try to use rigid body collisions and then observe the new behavior or try to find a way to overcome the soft body constraints and develop a usable behavior. \\
+In the fetch push environment, baseline 3 performs the worst by achieving a success rate of only 0.2, performing similar or worse than a random agent. Baseline 1 can successfully solve the environment and reaches a success rate of 0.8 in 10M time steps and baseline 2 can beat it by reaching a success rate of 0.9 in 3M time steps and a success rate of 0.95 in 6M time steps. Figure \ref{fig:FPR} shows that the current implementation can beat all the previous baselines by reaching a success rate of 0.95 in approximately 1.1M time steps, solving the environment successfully and also providing accelerated learning. An interesting observation here is that the demonstrations used had a clear pushing motion where the end effector of the robot arm is used to push the block towards the goal. However, the final agent learned behaviour is slightly different from what is expected. The agent can use the end effector of the robot arm to successfully move the object to the goal, but instead of a pushing motion, it uses a poking motion. The main reason could be the dynamics of the environment, MuJoCo uses a soft body collision system for its interactions. This might have influenced the agent to interact differently with the objects in the environment. Even though the goal might be successful, this particular motion might not be a desirable behaviour for real-world applications. This can easily be fixed by changing the constraints to rigid body collisions, but this was not done for this research as this process increases the simulation time of the environment significantly. But one positive outcome is that the agent in the current implementation is not bound or constrained to the actions of the demonstrations, it can modify its actions as per the environment and develop new behaviours. As an extension to this research, it would be interesting to try out two things, in the same environment try to use rigid body collisions and then observe the new behaviour or try to find a way to overcome the soft body constraints and develop a usable behaviour. The demo video for this behaviour can be found in the GitHub Project Page \cite{CurrentImplementation}. \\
 
 \subsection{Fetch Slide Environment}
 
@@ -80,21 +82,35 @@ The fetch slide is the most complex environment of the suite and that is evident
 
 \subsection{Fetch Pick and Place Environment}
 
-\begin{figure}[h!]
-     \centering
-     \begin{subfigure}[b]{0.4\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{images/FPAPASR.png}
-         \caption{Success Rate Plot of the Current Implementation.}
-     \end{subfigure}
-     \begin{subfigure}[b]{0.4\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{images/FPAPB.png}
-         \caption{Success Rate Plot for \textcolor{blue}{Baseline 1}, \textcolor{red}{Baseline 2}, \textcolor{violet}{Baseline 3} \cite{nair2018overcoming}.}
-     \end{subfigure}
-        \caption{Comparison Between Current Implementation and Baselines 1, 2 and 3 for Fetch Pick and Place Task.}
-        \label{fig:FPAPR1}
-\end{figure}
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/FPAPASR.png}
+        \caption[Network2]%
+        {{\small Actor Loss}}    
+        \label{fig:mean and std of net14}
+    \end{subfigure}
+    \vskip\baselineskip
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{images/FPAPB1.png}
+        \caption[]%
+        {{\small Critic 1 Loss}}    
+        \label{fig:mean and std of net34}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{images/FPAPB.png}
+        \caption[]%
+        {{\small Critic 2 Loss}}    
+        \label{fig:mean and std of net44}
+    \end{subfigure}
+    \caption[ Rewards and Loss Plots for the Fetch Pick and Place Environment with Script Demonstrator. ]
+    {\small Rewards and Loss Plots for the Fetch Pick and Place Environment with Script Demonstrator.} 
+    \label{fig:mean and std of nets}
+\end{figure*}
 
 \begin{figure}[h!]
      \centering
@@ -112,7 +128,7 @@ The fetch slide is the most complex environment of the suite and that is evident
         \label{fig:FPAPR2}
 \end{figure}
 
-The fetch reach environment is not as difficult compared to the fetch slide but presents its unique challenges as it involves complex interactions with the object and the gripper. Baseline 3 showing poor performance in the other environments does well in this task achieving a success rate of 0.8 much faster compared to the other implementations but then plateaus at the same value. On the other hand baseline 1 which was showing consistently decent performance is unable to solve this environment and achieves a success rate of 0.0. The reason is the dynamics of the environment involving the opening and closing of the grippers onto the object and then manipulating the position of the object to the goal. Baseline 3 using a randomly initialized agent with random exploration cannot just stumble onto the object with open grippers and grasp it, hence failing the task entirely. The same research has introduced ways to overcome this by using some tricks, for example, initializing the states where the gripper is already grasping the object, which converts the environment to a more reach like task and the agent is trained in this way.  Baseline 2 overcomes this problem by using demonstrations and solves the environment successfully by achieving a success rate of 0.95 in 1M time steps beating the baseline 3 with a higher success rate. Baseline 4 was also able to solve the environment successfully by just using dense rewards and achieving a max success rate of 0.6 showing that just a reward function is not enough in such complex environments. The current implementation performs better than all previous baselines by achieving a success rate of 1.0 in 310K time steps, successfully solving the environment and also providing accelerated learning. \\
+The fetch reach environment is not as difficult compared to the fetch slide but presents its unique challenges as it involves complex interactions with the object and the gripper. Baseline 3 showing poor performance in the other environments does well in this task achieving a success rate of 0.8 much faster compared to the other implementations but then plateaus at the same value. On the other hand baseline, 1 which was showing consistently decent performance is unable to solve this environment and achieves a success rate of 0.0. The reason is the dynamics of the environment involving the opening and closing of the grippers onto the object and then manipulating the position of the object to the goal. Baseline 3 using a randomly initialized agent with random exploration cannot just stumble onto the object with open grippers and grasp it, hence failing the task entirely. The same research has introduced ways to overcome this by using some tricks, for example, initializing the states where the gripper is already grasping the object, which converts the environment to a more reach like task and the agent is trained in this way.  Baseline 2 overcomes this problem by using demonstrations and solves the environment successfully by achieving a success rate of 0.95 in 1M time steps beating the baseline 3 with a higher success rate. Baseline 4 was also able to solve the environment successfully by just using dense rewards and achieving a max success rate of 0.6 showing that just a reward function is not enough in such complex environments. The current implementation performs better than all previous baselines by achieving a success rate of 1.0 in 310K time steps, successfully solving the environment and also providing accelerated learning. \\
 
 \subsection{Comparison Between Demonstrations}
 
@@ -164,11 +180,12 @@ The fetch reach environment is not as difficult compared to the fetch slide but 
         \label{fig:CDAR}
 \end{figure}
 
-Figure \ref{fig:CD} shows the comparison between two different sources of demonstrations for the fetch pick and place environment. It is evident that even after varying the source of demonstrations the current implementation can successfully solve the environment. However, there are some interesting observations. The method using an agent as the demonstrator performs slightly better than the method that uses the handcrafted script as the demonstrator. The difference in convergence rate is not huge as a cause for concern but the noticeable difference has to be mentioned. The reason for this could be the ability of the demonstrator to complete the task and present rewards faster. On testing, it can be seen that even with external noise added the agent demonstrator can complete the task within 30 time steps out of the total 50 time steps limit per episode whereas the script takes around 40 time steps to complete the task. This delayed completion of the task could have influenced the learning agent to mimic similar behaviors as this method is behavior cloning after all. Figure \ref{fig:CDAR} shows the average reward for both the agents after a successful training session. From the figure, it can be seen that the agent which learned from the agent demonstrator has a higher average reward per episode compared to the agent which had the handcrafted script as the demonstrator. This observation further confirms the fact the slight delay in convergence time might be due to the agent mimicking the behavior of finishing the task later thus slowing down the training slightly. Even though there is a slight delay in training time between the two sources of demonstrations, both the sources can complete the task and provide accelerated learning compared to the previous baseline. \\
+Figure \ref{fig:CD} shows the comparison between two different sources of demonstrations for the fetch pick and place environment. It is evident that even after varying the source of demonstrations the current implementation can successfully solve the environment. However, there are some interesting observations. The method using an agent as the demonstrator performs slightly better than the method that uses the handcrafted script as the demonstrator. The difference in convergence rate is not huge as a cause for concern but the noticeable difference has to be mentioned. The reason for this could be the ability of the demonstrator to complete the task and present rewards faster. On testing, it can be seen that even with external noise added the agent demonstrator can complete the task within 30 time steps out of the total 50 time steps limit per episode whereas the script takes around 40 time steps to complete the task. This delayed completion of the task could have influenced the learning agent to mimic similar behaviours as this method is behaviour cloning after all. Figure \ref{fig:CDAR} shows the average reward for both the agents after a successful training session. From the figure, it can be seen that the agent which learned from the agent demonstrator has a higher average reward per episode compared to the agent which had the handcrafted script as the demonstrator. This observation further confirms the fact the slight delay in convergence time might be due to the agent mimicking the behaviour of finishing the task later thus slowing down the training slightly. Even though there is a slight delay in training time between the two sources of demonstrations, both the sources can complete the task and provide accelerated learning compared to the previous baseline. \\
 
 \subsection{Generalization Capability}
 
 \begin{table}[h!]
+\centering
 \begin{tabular}{|c|c|c|}
 \hline
 Fetch Environment & Baseline 1 Test Success Rate & Current Implementation Test Success Rate \\ \hline
@@ -181,11 +198,12 @@ Slide          & 0.4 & 0.4 \\ \hline
 \label{tab:GC}
 \end{table}
 
-Table \ref{tab:GC} shows the test results of the trained agents for baseline 1 and the current implementation in all the environments. The success rates are calculated by averaging the success rate of a test set across 5 different random seeds. The current implementation can match the performance of baseline 1 in the reach and slide tasks and can outperform the baseline in the push and pick and place tasks. It can be observed that even though the current implementation can deliver good performance in the other environments it falls short in the slide task. It performs better than the baselines in training and equals the performance of the baseline in testing given the complexity of the environment this is not a bad result but definitely can be improved upon. As an extension of this research, it would be interesting to see if the transition from behavior cloning to complete reinforcement learning of the learned agent can deliver better performance. Using an agent trained using the current implementation and then using pure reinforcement learning to fine-tune the agent to try and see if it is possible to achieve better performance while still maintaining the accelerated learning. \\
+Table \ref{tab:GC} shows the test results of the trained agents for baseline 1 and the current implementation in all the environments. The success rates are calculated by averaging the success rate of a test set across 5 different random seeds. The current implementation can match the performance of baseline 1 in the reach and slide tasks and can outperform the baseline in the push and pick and place tasks. It can be observed that even though the current implementation can deliver good performance in the other environments it falls short in the slide task. It performs better than the baselines in training and equals the performance of the baseline in testing given the complexity of the environment this is not a bad result but definitely can be improved upon. As an extension of this research, it would be interesting to see if the transition from behaviour cloning to complete reinforcement learning of the learned agent can deliver better performance. Using an agent trained using the current implementation and then using pure reinforcement learning to fine-tune the agent to try and see if it is possible to achieve better performance while still maintaining the accelerated learning. \\
 
 \subsection{Number of Demonstrations Used}
 
 \begin{table}[h!]
+\centering
 \begin{tabular}{|c|c|c|}
 \hline
 Fetch Environments & Demonstrations Baseline 2 & Demonstrations Current Implementation \\ \hline
@@ -209,11 +227,12 @@ Table \ref{tab:ND} shows the number of demonstrations used for the current imple
     \label{fig:MAC}
 \end{figure}
 
-Figure \ref{fig:MAC} shows the comparison of the model complexity between the current implementations and the baselines. Baseline 1 was able to solve the tasks with relatively lesser model complexity of having 3 layers with 64 neurons in each layer. Both the current implementation and baseline 2 which use demos for learning have a higher model complexity, the baseline 2 having the highest of the lot with 4 layers and 256 neurons each while the current implementation has a slightly reduced version of the same with 3 layers and 256 neurons each. Baseline 1 has the highest convergence rate but the training time was reduced using powerful hardware resources, it uses no demonstrations and a random agent so it can get away with simple model complexity. Due to the use of demonstrations to prevent catastrophic forgetting of learned behaviors a higher complexity is required for baseline 2 and the current implementation, but the current implementation can perform better than the baseline 2 using a relatively lesser complex model, striking a good balance between the convergence rate and model complexity. \\
+Figure \ref{fig:MAC} shows the comparison of the model complexity between the current implementations and the baselines. Baseline 1 was able to solve the tasks with relatively lesser model complexity of having 3 layers with 64 neurons in each layer. Both the current implementation and baseline 2 which use demos for learning have a higher model complexity, the baseline 2 having the highest of the lot with 4 layers and 256 neurons each while the current implementation has a slightly reduced version of the same with 3 layers and 256 neurons each. Baseline 1 has the highest convergence rate but the training time was reduced using powerful hardware resources, it uses no demonstrations and a random agent so it can get away with simple model complexity. Due to the use of demonstrations to prevent catastrophic forgetting of learned behaviours a higher complexity is required for baseline 2 and the current implementation, but the current implementation can perform better than the baseline 2 using a relatively lesser complex model, striking a good balance between the convergence rate and model complexity. \\
 
 \subsection{Hardware Complexity \textit{vs} Training Time}
 
 \begin{table}[h!]
+\centering
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|ccc|ccc|ccc|}
 \hline
