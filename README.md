@@ -1,4 +1,4 @@
-# Master-Thesis_Hari-Vidharth_S4031180
+# Master Thesis Research
 
 This project was done by Hari Vidharth as a part of Master Thesis in the University of Groningen.
 
